@@ -1,6 +1,4 @@
-from .inventory import stan
 
-orders=[]
 def create_new_order():
     name=input("Co chcesz włożyć do koszyka?")
     volume=int(input(f"Ile {name} chcesz wziąć?"))
