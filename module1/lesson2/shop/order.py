@@ -1,6 +1,17 @@
 import random
-from module1.lesson1.shop.product import Product, print_product
+from module1.lesson1.shop.product import Product
 
+class OrderElement():
+    def __init__(self,product,quantity):
+        self.product=product
+        self.quantity=quantity
+
+    def total_price(self):
+        return self.product.price*self.quantity
+
+    def print(self):
+        print(f"Nazwa: {self.product.name},\t Typ: {self.product.category}, \t Cena/kg [zł]: {self.product.price},"
+              f"\t Ilość [kg]: {self.quantity}, \t Cena [zł]: {self.total_price()}")
 
 class Order():
     def __init__(self, name, shopping_list=None, total_price=0):
@@ -9,21 +20,18 @@ class Order():
         self.list=shopping_list
         if shopping_list is None:
             shopping_list=[]
-        self.total_price=total_order(shopping_list)
     def print_order(self):
         print("="*20)
         print(f"{self.name} zamówił/a: ")
         for prod in self.list:
-            print_product(prod)
-        print(f"Całkowita kwota zamówienia to: {self.total_price} zł.")
+            OrderElement.print(prod)
+        print(f"Całkowita kwota zamówienia to: {self.total_order()} zł.")
         print("="*20)
-def total_order(shopping_list):
-    total_price=0
-    for i in shopping_list:
-        total_price += i.price
-    return total_price
-
-
+    def total_order(self):
+        total_price=0
+        for i in self.list:
+            total_price += OrderElement.total_price(i)
+        return total_price
 
 def random_order_generator():
     new_list=[]
@@ -32,5 +40,6 @@ def random_order_generator():
         prod_name="Produkt"+str(i)
         prod_cat="Kategoria"+str(random.randint(1,9))
         prod_price=random.randint(1,20)
-        new_list.append(Product(prod_name,prod_cat,prod_price))
+        quantity=random.randint(1,50)
+        new_list.append(OrderElement(Product(prod_name,prod_cat,prod_price),quantity))
     return new_list
