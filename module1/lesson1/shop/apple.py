@@ -3,3 +3,6 @@ class Apples():
         self.type=type
         self.size=size
         self.price=price
+
+    def total_price(self, param):
+        pass
