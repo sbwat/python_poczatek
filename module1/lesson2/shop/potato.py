@@ -4,6 +4,9 @@ class Potato():
         self.size = size
         self.price = price
 
+    def __repr__(self):
+        return f"<Potato type='{self.type}', size='{self.size}', price='{self.price}'>"
+
 
 
     def total_price(self,weight):
