@@ -2,11 +2,13 @@ from shop.apple import Apples
 from shop.potato import Potato
 from shop.order import Order, OrderElement
 from shop.product import Product
-from shop.discounts import regular_discount,christmas_discount
+from shop.discounts import regular_discount, christmas_discount
 
 
 def order_key(order):
     return order._total_order()
+
+
 def class_example():
     red = Apples('red', 'big', 5)
     green = Apples('green', 'small', 3)
@@ -33,8 +35,8 @@ def class_example():
 
     order3 = Order.random_order_generator("Jacek")
     order4 = Order("Marek", [oe1, oe2])
-    order5 = Order("Jacek", [oe1, oe2], discount = christmas_discount)
-    order6 = Order("Marek", [oe2, oe1], discount = regular_discount)
+    order5 = Order("Jacek", [oe1, oe2], discount=christmas_discount)
+    order6 = Order("Marek", [oe2, oe1], discount=regular_discount)
 
     print(str(order3))
     print(f"Długość zamówienia: {len(order3)}")
@@ -55,10 +57,9 @@ def class_example():
         print(f"{i} -> {new_order.total_price}")
         orders_to_sort.append(new_order)
 
-    orders_to_sort.sort(key=order_key)
+    orders_to_sort.sort(key=lambda order: order._total_order())
     for order in orders_to_sort:
         print(order.total_price)
-
 
 
 if __name__ == '__main__':
