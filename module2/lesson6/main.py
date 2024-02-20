@@ -9,6 +9,7 @@ from shop.data_generator import random_order_generator
 def order_key(order):
     return order._total_order()
 
+
 def apply_discount(discount_type, order_value, discount_value):
     return discount_type.apply_discount(order_value, discount_value)
 
@@ -45,7 +46,7 @@ def class_example():
     twenty_perc_discount = PercentageDiscount(discount_percentage=20)
     hundred_pln_discount = AbsoluteDiscount(discount_value=100)
 
-    order3 = Order("Jacek",ordered_products)
+    order3 = Order("Jacek", ordered_products)
     order4 = Order("Marek", ordered_products)
     order5 = Order("Jacek", ordered_products, discount=twenty_perc_discount)
     order6 = Order("Adam", ordered_products, discount=hundred_pln_discount)
@@ -77,6 +78,7 @@ def class_example():
 
     express_order = ExpressOrder("Marek", "15-02-2024", random_order_generator())
     print(express_order)
+
 
 if __name__ == '__main__':
     class_example()
